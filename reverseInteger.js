@@ -17,13 +17,15 @@
 // Input: x = 120
 // Output: 21
 
-var reverse = function(x) {
+var reverse = function (x) {
+  const result = Math.abs(x).toString().split('').reverse().join('');
+  if (result > 2 ** 31 - 1) {
+    return 0;
+  }
   if (x < 0) {
-    x = Math.abs(x).toString().split('').reverse().join('');
-    return -Number(x);
+    return -result;
   } else {
-    x = Math.abs(x).toString().split('').reverse().join('');
-    return Number(x)
+    return result
   }
 
 };
