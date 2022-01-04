@@ -26,34 +26,24 @@
 // s consists of English letters, digits, symbols and spaces.
 
 var lengthOfLongestSubstring = function (s) {
-  var str = '';
-  var max = 0;
-  var storage = {};
-  var start = 0
+  let maxStr = '';
+  let currStr = '';
 
-  //iterate the string, using obj to track letters
-  while (start < s.length) {
-    for (let i = start; i < s.length; i++) {
-      // if repeated, cal the length and store it to max
-      if (!storage[s[i]]) {
-        storage[s[i]] = 1;
-        str += s[i];
-         if (i === s.length - 1 && str.length > max) {
-          return str.length;
-        }
+  for (let i = 0; i < s.length; i++) {
+      let letter = s[i];
+      index = currStr.indexOf(letter);
+
+      if(index > -1) {
+          if (currStr.length > maxStr.length) {
+            maxStr = currStr;
+          }
+        currStr = currStr.slice(index + 1) + letter;
       } else {
-        if (str.length > max) {
-          max = str.length;
-          break;
-        } else {
-            break;
-        }
+        currStr += letter;
       }
-    }
-      str = '';
-      storage = {};
-      start++;
   }
-
-    return max;
+if(currStr.length > maxStr.length) {
+  maxStr = currStr
+}
+return maxStr.length
   };
