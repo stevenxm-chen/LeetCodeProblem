@@ -25,5 +25,20 @@
 // The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 
 var maxProduct = function(nums) {
+  let max = nums[0];
+  let prevMax = nums[0];
+  let prevMin = nums[0];
 
+  for (let i = 0; i < nums.length; i++) {
+    let currMax = Math.max(prevMax * nums[i], nums[i], prevMin * nums[i]);
+    let currMin - Math.min(prevMax * nums[i], nums[i], prevMin * nums[i]);
+
+     prevMax = Math.max(currMax, currMin);
+     prevMin = Math.min(currMin, currMax);
+
+
+    max = Math.max(max, prevMax);
+  }
+
+  return max;
 };
