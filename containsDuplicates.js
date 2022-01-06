@@ -25,14 +25,7 @@
  var containsDuplicate = function(nums) {
     let result = false;
 
-    const storage = {};
+    const mySet = new Set(nums);
 
-    for (let num of nums) {
-      if (storage[num]) {
-        result = true;
-        break;
-      }
-    }
-
-    return result;
+    return mySet.size === nums.length;
 };
