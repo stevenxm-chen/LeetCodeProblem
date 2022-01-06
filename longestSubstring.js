@@ -37,6 +37,9 @@ var lengthOfLongestSubstring = function (s) {
           if (currStr.length > maxStr.length) {
             maxStr = currStr;
           }
+
+        // IMPORTANT!! if you meet the repeated letter, just slice from that index and start building the string again
+        //for example  'acbmp'  next one is 'b', so 'acbmp' => 'mp' + 'b' to rebuild the string.
         currStr = currStr.slice(index + 1) + letter;
       } else {
         currStr += letter;
