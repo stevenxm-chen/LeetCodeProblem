@@ -21,21 +21,30 @@
 // 1 <= nums[i] <= 1000
 // 0 <= k <= 106
 
-var numSubarrayProductLessThanK = function(nums, k) {
+var numSubarrayProductLessThanK = function (nums, k) {
   let result = 0;
 
-  for (let i = 0; i < nums.length; i ++) {
-    let product = 1;
-    for ( let j = i; j < nums.length; j ++) {
+  let i = 0;
+  let j = 0;
 
-      if (product * nums[j] < k) {
-        product *= nums[j]
+  let product = 1;
 
-        result ++;
-      } else {
-        break;
+  while (i < nums.length && j < nums.length) {
+
+    if (product * nums[i] < k) {
+
+      product *= nums[i];
+      result += i - j + 1
+      i++;
+
+    } else {
+
+      if (nums[j]) {
+        product /= num[j];
+        j++;
       }
     }
+
   }
 
   return result;
