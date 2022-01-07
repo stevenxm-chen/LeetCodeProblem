@@ -22,5 +22,21 @@
 // 0 <= k <= 106
 
 var numSubarrayProductLessThanK = function(nums, k) {
+  let result = 0;
 
+  for (let i = 0; i < nums.length; i ++) {
+    let product = 1;
+    for ( let j = i; j < nums.length; j ++) {
+
+      if (product * nums[j] < k) {
+        product *= nums[j]
+
+        result ++;
+      } else {
+        break;
+      }
+    }
+  }
+
+  return result;
 };
