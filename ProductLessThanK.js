@@ -21,31 +21,40 @@
 // 1 <= nums[i] <= 1000
 // 0 <= k <= 106
 
-var numSubarrayProductLessThanK = function (nums, k) {
-  let result = 0;
+var mergeTwoLists = function(list1, list2) {
 
-  let i = 0;
-  let j = 0;
+  if (!list1 && list2) {
+    return list2
+  } else if (list1 && !list2) {
+    return list1
+  }
 
-  let product = 1;
+  let list = new ListNode(0);
+  let head = list;
 
-  while (i < nums.length && j < nums.length) {
+  while (list1 && list2) {
+    if (list1.val < list2.val) {
 
-    if (product * nums[i] < k) {
+      list.next = new ListNode(list1.val);
+      list = list.next;
+      list1 = list1.next;
 
-      product *= nums[i];
-      result += i - j + 1
-      i++;
 
+    }  else if (list1.val === list2.val) {
+      list.next = new ListNode(list1.val);
+      list1 = list1.next;
+      list = list.next;
+      list.next = new ListNode(list2.val);
+      list2 = list2.next;
+      list = list.next
     } else {
 
-      if (nums[j]) {
-        product /= num[j];
-        j++;
-      }
+      list.next = new ListNode(list2.val);
+      list=list.next;
+      list2 = list2.next;
     }
 
   }
 
-  return result;
+  return head.next;
 };
