@@ -8,8 +8,6 @@
 
 // You must write an algorithm that runs in O(log n) time.
 
-
-
 // Example 1:
 
 // Input: nums = [3,4,5,1,2]
@@ -37,4 +35,17 @@
 
 var findMin = function(nums) {
 
+  let start = 0;
+  let end = nums.length - 1;
+
+  while ( start < end) {
+    let mp = Math.floor((start + end) / 2);
+
+    if (nums[mp] > nums[end]) {
+      start = mp + 1;
+    } else {
+      end = mp;
+    }
+  }
+  return nums[end];
 };
