@@ -38,9 +38,11 @@ var findMin = function(nums) {
   let start = 0;
   let end = nums.length - 1;
 
+  // using binary search
+
   while ( start < end) {
     let mp = Math.floor((start + end) / 2);
-
+    // if mp > end then assgin the start to midpoint and start again, otherwise assgin end to midpoint
     if (nums[mp] > nums[end]) {
       start = mp + 1;
     } else {
