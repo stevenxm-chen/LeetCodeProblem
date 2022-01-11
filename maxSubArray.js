@@ -24,12 +24,15 @@
 // 1 <= nums.length <= 105
 // -104 <= nums[i] <= 104
 
-var maxSubArray = function(nums) {
-    let max = 0;
+var maxSubArray = function (nums) {
 
-    const storage = {};
+  let max = nums[0];
 
-    for (let i = 0; i < )
+  for (let i = 1; i < nums.length; i++) {
+    nums[i] = Math.max(num[i], nums[i] + nums[i - 1]);
 
-    return max;
+    max = Math.max(max, nums[i]);
+  }
+
+  return max;
 };
