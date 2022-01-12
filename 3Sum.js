@@ -30,34 +30,50 @@ var threeSum = function (nums) {
     return result;
   }
 
+   nums = nums.sort((a,b) => a - b);
   //iterate over nums, create sum in the loop
-  const past = {}
-  const hash = {};
+
   let first = 0;
 
   while (first < nums.length) {
-    const storage = {};
-     let sum = -nums[first];
+    //nums are sort if sum > 0 there is no need to go further.
+
+    if (nums[first] > 0) {
+      break;
+    }
+     let sum = nums[first];
+
 
      //if duplitcate sum just no need to run again
-     if (past[-sum] !== undefined) {
+     if (sum === nums[first - 1]) {
        first ++
        continue;
      }
 
-    for (i = first + 1; i < nums.length; i++) {
-      if (storage[sum - nums[i]] !== undefined) {
-        let combo = [-sum, sum - nums[i], nums[i]].sort();
-        if(hash[combo] === undefined) {
-          result.push(combo);
-          hash[combo] = true;
-        }
+    let j = first + 1;
+    let k = nums.length - 1;
+    debugger
 
+   while (j < k) {
+      let total = sum + nums[j] + nums[k];
+
+    if (total === 0) {
+      result.push([sum, nums[j], nums[k]]);
+      while (nums[j] === nums[j + 1]) {
+        j++;
       }
-      storage[nums[i]] = i;
+      while (nums[k - 1] === nums[k]) {
+        k--;
+      }
+      j++;
+      k--;
+    } else if (total > 0) {
+      k--;
+    } else {
+      j++;
     }
-    past[-sum] = 1
-    first ++
+   }
+    first ++;
   }
 
 
