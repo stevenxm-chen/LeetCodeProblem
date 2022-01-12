@@ -31,5 +31,37 @@
 // -104 <= target <= 104
 
 var search = function(nums, target) {
+  let index = -1;
 
+  //binary search, need start, end, mp;
+  // if mp > target assign start to mp + 1 else assing end to mp;
+
+  let start = 0;
+  let end = nums.length - 1;
+
+
+  while (start <= end) {
+    let mp = Math.floor((start + end) / 2);
+
+    if (nums[mp] === target) {
+      return mp;
+    }
+
+    if (nums[mp] >= nums[start]) {
+      if (nums[mp] >= target && nums[start] <= target) {
+        end = mp - 1;
+      } else {
+        start = mp + 1;
+      }
+    } else {
+      if (nums[mp] <= target && nums[end] >= target) {
+        start = mp + 1;
+      } else {
+        end = mp - 1;
+      }
+    }
+
+  }
+
+  return -1;
 };
