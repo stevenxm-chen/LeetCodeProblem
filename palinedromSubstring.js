@@ -24,5 +24,21 @@
 // s consists of lowercase English letters.
 
 var countSubstrings = function(s) {
-    //
+  let count = 0;
+  //create a helper function to find pal
+  const pal = (left, right) => {
+    while (left >=0 && s[left] === s[right]) {
+      left--;
+      right++;
+      count++
+    }
+  }
+
+  //iterate over s  and find pal;
+  for (let i = 0; i < s.length; i++) {
+    pal(i, i);
+    pal(i, i + 1);
+  }
+
+  return count;
 };
