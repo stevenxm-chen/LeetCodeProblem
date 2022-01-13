@@ -37,7 +37,9 @@ var threeSumClosest = function (nums, target) {
 
     while (j < k) {
       sum = nums[i] + nums[j] + nums[k];
+      // calculate the diff first, so that no need to DRY in the if statement
       if (Math.abs(target - sum) < Math.abs(diff)) {
+        //this will help not using storage object;
         diff = target - sum;
       }
       if (sum === target) {
