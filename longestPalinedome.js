@@ -19,40 +19,25 @@
 // s consist of only digits and English letters.
 
 var longestPalindrome = function(s) {
-  //helper function if it is palinedome
-  // max to store longest pal
-  // curr for store current pal
+  let maxPal = '';
 
-  //edge case if string is empty and just one letter;
-
-  // if the string is pal. return string.
-
-  // create substrings from string's length if not reduce one
-
-  const isPal = (str) => {
-    let reversed = str.split('').reverse().join('');
-    return str === reversed;
+  for (let i = 0; i < s.length; i ++) {
+    pal(i, i);
+    pal(i, i + 1);
   }
 
-  // if s is not pal, assume maxpal is s's length - 1
-  let maxLen = s.length;
-  let start = 0;
-  let end = start + maxLen;
+  const pal = (left, right) => {
+    while (left >= 0 && s[left] === s[right]) {
+      left--;
+      right++;
+    };
+    left++;
+    right--;
 
-  while (maxLen > 0) {
-
-    let curr = s.slice(start, end)
-
-    if (isPal(curr)) {
-      return curr;
-    } else if (end === s.length) {
-      maxLen--;
-      start = 0;
-      end = maxLen;
-    } else {
-      start++;
-      end++;
+    if (maxPal.length < right - left + 1) {
+      maxPal = s.slice(left, right+1);
     }
   }
 
+  return maxPal;
 };
