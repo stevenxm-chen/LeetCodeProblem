@@ -27,37 +27,27 @@ var threeSumClosest = function (nums, target) {
 
   let sum = 0;
   let diff = 1000;
-  const storage = {};
 
-  // sort the array
   nums = nums.sort((a, b) => a - b);
 
-  //iterate over nums i is first num, j 2nd. k 3rd
   for (let i = 0; i < nums.length; i++) {
 
     let j = i + 1;
     let k = nums.length - 1;
 
-    debugger
-
     while (j < k) {
       sum = nums[i] + nums[j] + nums[k];
+      if (Math.abs(target - sum) < Math.abs(diff)) {
+        diff = target - sum;
+      }
       if (sum === target) {
         return sum;
       } else if (sum > target) {
-        if (sum - target < diff) {
-          diff = sum - target;
-          storage[diff] = sum;
-        }
         k--;
       } else {
-        if (target - sum < diff) {
-          diff = target - sum;
-          storage[diff] = sum;
-        }
         j++;
       }
     }
   }
-    return storage[diff];
+    return target - diff;
 };
