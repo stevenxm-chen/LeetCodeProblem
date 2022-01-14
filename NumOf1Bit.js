@@ -28,5 +28,6 @@
 // The input must be a binary string of length 32.
 
 var hammingWeight = function(n) {
-    //
+  //n is a number, need to be converted to binary
+  return n.toString(2).split('0').join('').length;
 };
