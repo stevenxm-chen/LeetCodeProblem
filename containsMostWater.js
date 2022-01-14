@@ -27,21 +27,21 @@
 // 0 <= height[i] <= 104
 
 
-var maxArea = function(height) {
-    let max = 0;
-
+var maxArea = function (height) {
+  let max = 0;
   let i = 0;
   let j = height.length - 1;
-
+  //using 2 pointer;
   while (i < j) {
+    //length is j - i; width is the smaller height;
     let length = j - i;
     let width = Math.min(height[i], height[j]);
-
     let area = width * length;
 
     if (area > max) {
       max = area;
     }
+    // this is IMPORTANT!! if height[j] is larger, the height is always at i, so we need to move i to change it.
     if (height[i] < height[j]) {
       i++;
     } else if (height[i] > height[j]) {
@@ -49,5 +49,5 @@ var maxArea = function(height) {
     }
   }
 
-    return max;
+  return max;
 };
