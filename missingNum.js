@@ -31,13 +31,17 @@
  * @param {number[]} nums
  * @return {number}
  */
- var missingNumber = function(nums) {
-    const n = nums.length;
-    const obj = {}
+var missingNumber = function (nums) {
+  const n = nums.length;
 
-    for (let i = 0; i <= n; i++) {
-      if (nums.indexOf(i) === -1) {
-        return i;
-      }
+  let sum = 0;
+
+  for (let i = 0; i <= n; i++) {
+    if (!nums[i]) {
+      nums[i] = 0
     }
+    sum += i - nums[i]
+  }
+
+  return sum;
 };
