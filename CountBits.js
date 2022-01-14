@@ -19,6 +19,7 @@
 // 3 --> 11
 // 4 --> 100
 // 5 --> 101
+// 6 --> 110  it is just 3(11) + 0
 
 // Constraints:
 
@@ -32,13 +33,28 @@
  * @param {number} n
  * @return {number[]}
  */
- var countBits = function(n) {
-  const ans = [];
+var countBits = function(num) {
 
-  for (let i = 0; i <= n; i++) {
-    let count = i.toString(2).split('0').join('').length;
-    ans.push(count);
+  let result =[]
+  for (let i=0;i<=num;i++){
+      if (i === 0){
+          result.push(0)
+          continue
+      }
+      if (i === 1 || i===2){
+          result.push(1)
+          continue
+      }
+
+      if (i%2 === 0){
+        //REMEMBER when even beats at i same as result[i / 2]
+          result.push(result[i/2])
+      } else {
+        //REMEMBER when odd just use previous one + 1
+          result.push(result[i - 1)] + 1)
+      }
+
   }
 
-  return ans;
+  return result
 };
