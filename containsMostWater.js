@@ -25,11 +25,29 @@
 // n == height.length
 // 2 <= n <= 105
 // 0 <= height[i] <= 104
-// Accepted
-// 1,244,086
-// Submissions
-// 2,334,453
+
 
 var maxArea = function(height) {
-    //
+    let max = 0;
+
+  let i = 0;
+  let j = height.length - 1;
+
+  while (i < j) {
+    let length = j - i;
+    let width = Math.min(height[i], height[j]);
+
+    let area = width * length;
+
+    if (area > max) {
+      max = area;
+    }
+    if (height[i] < height[j]) {
+      i++;
+    } else if (height[i] > height[j]) {
+      j--;
+    }
+  }
+
+    return max;
 };
