@@ -24,11 +24,26 @@
  * @param {number} n
  * @return {number}
  */
- var climbStairs = function(n) {
+var climbStairs = function (n) {
+
+  //fibonacci sequence
+
+  /*
+1 -> 1
+2 -> 2 (1+1 | 2+0)
+3 -> 3 (1+1+1 | 2+1 | 1+2)
+4 -> 5 (1+1+1+1 | 2+1+1 | 2+2 | 1+2+1 | 1+1+2)
+and so on
+
+This is exactly a fibonacci sequence
+Each next amount of steps equals to sum of previous 2
+1 -> 2 -> 3 -> 5 -> 8 -> 13
+*/
+
   const arr = [0, 1, 2];
 
   for (let i = 3; i <= n; i++) {
-    arr[i] = arr[i - 1] + arr[ i - 2];
+    arr[i] = arr[i - 1] + arr[i - 2];
   }
 
   return arr[n];
