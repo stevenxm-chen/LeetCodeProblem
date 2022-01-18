@@ -1,10 +1,6 @@
 // You are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps.
-
 // You can either start from the step with index 0, or the step with index 1.
-
 // Return the minimum cost to reach the top of the floor.
-
-
 
 // Example 1:
 
@@ -37,5 +33,17 @@
  * @return {number}
  */
  var minCostClimbingStairs = function(cost) {
+  if (cost.length === 1) return 0;
+  if (cost.length === 2) return Math.min(cost[0], cost[1]);
 
+    let minCostTwoBefore = cost[0];
+    let minCostOneBefore = cost[1];
+
+    for (let i = 2; i < cost.length; i++) {
+      let curr = cost[i] + Math.min(minCostOneBefore, minCostTwoBefore);
+
+      minCostTwoBefore = minCostOneBefore;
+      minCostOneBefore = curr;
+    }
+  return Math.min(minCostOneBefore, minCostTwoBefore);
 };
