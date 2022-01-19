@@ -33,6 +33,7 @@
  * @return {number}
  */
  var minCostClimbingStairs = function(cost) {
+
   if (cost.length === 1) return 0;
   if (cost.length === 2) return Math.min(cost[0], cost[1]);
 
