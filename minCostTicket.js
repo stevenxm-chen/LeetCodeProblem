@@ -10,8 +10,6 @@
 // For example, if we get a 7-day pass on day 2, then we can travel for 7 days: 2, 3, 4, 5, 6, 7, and 8.
 // Return the minimum number of dollars you need to travel every day in the given list of days.
 
-
-
 // Example 1:
 
 // Input: days = [1,4,6,7,8,20], costs = [2,7,15]
@@ -40,5 +38,25 @@
 // 1 <= costs[i] <= 1000
 
 var mincostTickets = function(days, costs) {
-    ///
+
+  // set up dp, and day 0
+  const dp = Array(days[days.length - 1] + 1);
+  // day 0  cost is 0;
+  dp[0] = 0;
+
+  for (let i = 0; i < dp.length; i++) {
+    // i is day number
+    //if not visting that day, price should not increase same as pervious one
+    if (!days.includes(i)) {
+      dp[i] = dp[i - 1];
+    } else {
+      //check i in which range;
+      dp[i] = Math.min(
+        dp[Math.max(0, i - 1)] + costs[0], //getting day pass
+        dp[Math.max(0, i - 7)] + costs[1], // getting week pass
+        dp[Math.max(0, i - 30)] + costs[2], // getting month pass
+      )
+    }
+  }
+  return dp[dp.length - 1]
 };
