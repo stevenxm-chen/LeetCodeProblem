@@ -25,5 +25,12 @@
 // The answer is guaranteed to fit within a 32-bit integer, ie. answer <= 2^31 - 1.
 
 var tribonacci = function(n) {
-    //
+    //create an array to store first 3 elements
+    const arr = [0, 1, 1];
+    //loop over the array the ith element will be the sum of pervious 3
+    for (let i = 3; i <= n; i ++) {
+      arr[i] = arr[i - 3] + arr[i - 2] + arr[i - 1];
+    }
+
+    return arr[n]
 };
