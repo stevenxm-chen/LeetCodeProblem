@@ -30,7 +30,6 @@
  * @return {number}
  */
  var lengthOfLIS = function(nums) {
-    // iterate over the nums. if num is increasing then ++;
 
    if (nums.length === 0) {
      return 0;
@@ -41,6 +40,7 @@
    for (let i = 1; i < nums.length; i++) {
      for (let j = 0; j < i; j++) {
        if(nums[j] < nums[i]) {
+         // this is important! this one will store the length of subsequence to the current index
          arr[i] = Math.max(arr[i], arr[j] + 1);
        }
      }
