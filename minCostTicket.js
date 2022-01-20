@@ -44,7 +44,7 @@ var mincostTickets = function(days, costs) {
   // day 0  cost is 0;
   dp[0] = 0;
 
-  for (let i = 0; i < dp.length; i++) {
+  for (let i = 1; i < dp.length; i++) {
     // i is day number
     //if not visting that day, price should not increase same as pervious one
     if (!days.includes(i)) {
