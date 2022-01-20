@@ -35,5 +35,14 @@
 // Follow up: What if negative numbers are allowed in the given array? How does it change the problem? What limitation we need to add to the question to allow negative numbers?
 
 var combinationSum4 = function(nums, target) {
-  //
+  nums.sort((a, b) => a - b); 
+  let result = 0;  
+
+  const dp = Array(target + 1); 
+  dp[0] = nums[0]; 
+
+  for ( let i = 1; i < target; i++) {
+    
+  }
+  return result; 
 };
