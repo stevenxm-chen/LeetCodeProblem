@@ -5,8 +5,6 @@
 // For example, "ace" is a subsequence of "abcde".
 // A common subsequence of two strings is a subsequence that is common to both strings.
 
-
-
 // Example 1:
 
 // Input: text1 = "abcde", text2 = "ace"
@@ -35,5 +33,34 @@
  * @return {number}
  */
  var longestCommonSubsequence = function(text1, text2) {
-    //
+    if (text1 === text2) {
+      return text1.length;
+    }
+
+    let max = '';
+
+   for (let x = 0; x < text1.length; x++) {
+     let first = text1[x];
+     let sub = '';
+     let z = 0;
+     if (!text2.includes(text1[x])) {
+       continue;
+     }
+
+     for (let y = x ; y < text1.length; y++) {
+       for (z; z < text2.length; z++) {
+         if (text1[y] === text2[z]) {
+           sub += text1[y];
+           break;
+         }
+       }
+       if (z === text2.length) {
+         z = 0;
+       }
+     }
+     if (sub.length > max.length) {
+       max = sub
+     }
+   }
+  return max.length;
 };
