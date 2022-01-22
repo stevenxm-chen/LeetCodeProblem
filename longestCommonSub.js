@@ -33,34 +33,20 @@
  * @return {number}
  */
  var longestCommonSubsequence = function(text1, text2) {
-    if (text1 === text2) {
-      return text1.length;
+
+  const dp = [];
+  for (let i = 0 i < text1.length; i++) {
+    dp[i] = Array(text2.length).fill(0);
+  }
+
+  for (let i = 1; i <= text1.length; i++) {
+    for (let j = 1; j < text2.length; j++) {
+      if (text1[i - 1] === text2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j] , dp[i][j - 1])
+      }
     }
-
-    let max = '';
-
-   for (let x = 0; x < text1.length; x++) {
-     let first = text1[x];
-     let sub = '';
-     let z = 0;
-     if (!text2.includes(text1[x])) {
-       continue;
-     }
-
-     for (let y = x ; y < text1.length; y++) {
-       for (z; z < text2.length; z++) {
-         if (text1[y] === text2[z]) {
-           sub += text1[y];
-           break;
-         }
-       }
-       if (z === text2.length) {
-         z = 0;
-       }
-     }
-     if (sub.length > max.length) {
-       max = sub
-     }
-   }
-  return max.length;
+  }
+  return dp[text1.length][text2.length];
 };
