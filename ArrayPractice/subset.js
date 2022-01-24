@@ -25,17 +25,19 @@
  * @return {number[][]}
  */
  var subsets = function(nums) {
-  let result = [];
-  dfs([], 0);
+  let result = [[]];
 
   //solution idea:  [[]] curr = 1 => [[1]] +[[]] = [[], [1]]
   //[[], [1]] curr = 2 => [[], [1]] + [[2], [1, 2]] => [[],[1], [1, 2], [2]]
 
-  function dfs (curr, index) {
-    result.push(curr);
-    for (let i = index; i < nums.length; i++) {
-      dfs(curr.concat(nums[i]), i + 1)
+  for (let n of nums) {
+    let len = result.length;
+    for (let i = 0; i < len; i++) {
+      const arr = result[i].slice();
+      arr.push(n);
+      result.push(arr);
     }
   }
+
   return result;
 };
