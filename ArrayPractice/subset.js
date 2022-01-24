@@ -28,6 +28,9 @@
   let result = [];
   dfs([], 0);
 
+  //solution idea:  [[]] curr = 1 => [[1]] +[[]] = [[], [1]]
+  //[[], [1]] curr = 2 => [[], [1]] + [[2], [1, 2]] => [[],[1], [1, 2], [2]]
+
   function dfs (curr, index) {
     result.push(curr);
     for (let i = index; i < nums.length; i++) {
