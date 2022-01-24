@@ -25,5 +25,14 @@
  * @return {number[][]}
  */
  var subsets = function(nums) {
-    //
+  let result = [];
+  dfs([], 0);
+
+  function dfs (curr, index) {
+    result.push(curr);
+    for (let i = index; i < nums.length; i++) {
+      dfs(curr.concat(nums[i]), i + 1)
+    }
+  }
+  return result;
 };
