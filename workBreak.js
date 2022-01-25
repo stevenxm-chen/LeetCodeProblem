@@ -18,7 +18,6 @@
 // Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]
 // Output: false
 
-
 // Constraints:
 
 // 1 <= s.length <= 300
