@@ -2,8 +2,6 @@
 
 // Note that the same word in the dictionary may be reused multiple times in the segmentation.
 
-
-
 // Example 1:
 
 // Input: s = "leetcode", wordDict = ["leet","code"]
@@ -34,6 +32,21 @@
  * @param {string[]} wordDict
  * @return {boolean}
  */
- var wordBreak = function(s, wordDict) {
-    //
+var wordBreak = function (s, wordDict) {
+
+  const dp = Array(s.length + 1).fill(false);
+  dp[0] = true;
+  const set = new Set(wordDict);
+
+  for (let i = 1; i <= s.length; i++) {
+    for (let j = 0; j < i; j++) {
+      w = s.slice(j, i);
+      if (dp[j] === true && set.has(w)) {
+        dp[i] = true;
+        break;
+      }
+    }
+  }
+  return dp[s.length];;
+
 };
