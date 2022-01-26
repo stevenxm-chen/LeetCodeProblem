@@ -26,6 +26,30 @@
 // 1 <= nums.length <= 100
 // 0 <= nums[i] <= 1000
 
-var rob = function(nums) {
+var rob = function (nums) {
+
+  //edge cases
+  if (nums.length === 0) { return 0 }
+  if (nums.length === 1) { return nums[0] }
+  if (nums.length === 2) { return Math.max([nums[0], nums[1]]) }
+
+  // Since House[1] and House[n] are adjacent, they cannot be robbed together. Therefore, the problem becomes to rob either House[1]-House[n-1] or House[2]-House[n], depending on which choice offers more money.
+  // helper is rob house 1
+  function helper(start, end) {
+    nums = nums.slice(start, end);
+    let rob1 = nums[0];
+    let rob2 = Math.max(rob1, nums[1]);
+
+    for (let i = 2; i < nums.length; i++) {
+      let curr = Math.max(rob1 + nums[i], rob2);
+
+      rob1 = rob2;
+      rob2 = curr;
+    }
+
+    return rob2;
+  }
+
+  return Math.max(helper(0, nums.length - 1), helper(1, nums.length))
 
 };
