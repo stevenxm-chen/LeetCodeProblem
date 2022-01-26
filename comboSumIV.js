@@ -52,6 +52,7 @@ var combinationSum4 = function(nums, target) {
         dp[i]++
       }
       // this is important for all DP, changing constantly for each loop. adding sum to dp[i];
+      // draw a decision tree, and see how many different way sum up to target.  dp[i] represent how many ways to add to sum of i
       dp[i] += dp[i - num]
     }
   }
