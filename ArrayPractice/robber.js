@@ -2,8 +2,6 @@
 
 // Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
 
-
-
 // Example 1:
 
 // Input: nums = [1,2,3,1]
@@ -28,5 +26,24 @@
  * @return {number}
  */
  var rob = function(nums) {
-    //
+
+  if (nums.length === 0) { return 0};
+  if (nums.length === 1) {return nums[0]};
+  if (nums.length === 2) { return Math.max(nums[0], nums[1])};
+
+  rob1 = nums[0];
+  rob2 = Math.max(nums[0], nums[1]);
+
+  //max value at i = 2 (house 3) is either nums[1] or nums[0] + num[2];
+  // max value at i = 3 is either value of i = 2 or max of (nums[0] or nums[1]) + nums[3]
+
+  for (let i = 2; i < nums.length; i++) {
+    //calculate curr max
+    const curr = Math.max(nums[i] + rob1, rob2);
+   // when i changes we need to update rob1 and rob2
+    rob1 = rob2;
+    rob2 = curr;
+  }
+
+  return rob2
 };
