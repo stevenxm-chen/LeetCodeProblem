@@ -15,5 +15,22 @@
 // 3. Down -> Right -> Down
 
 var uniquePaths = function(m, n) {
-    //
+  //setup grid with dp fill with 0
+  //each dp[m][n] = how many ways to get there and dp[m + 1][n + 1] = dp [m][n + 1] + dp[m + 1][n]
+  // iteratre over the dp to calculate the rusult and return the last grid
+
+  const dp = Array(m);
+  for (let k = 0; k < dp.length; k++) {
+    dp[k] = Array(n).fill(1);
+  }
+
+  for (let i = 1; i < dp.length; i++) {
+    let row = dp[i];
+
+    for (let j = 1; j < row.length; j++) {
+      dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+    }
+  }
+
+  return dp[m - 1][n - 1];
 };
