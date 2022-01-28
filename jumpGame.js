@@ -23,54 +23,27 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-// var canJump = function (nums) {
-//   //create dp each dp[i] is false;
-//   //dp[0] = true
 
-//   if(nums.length === 1) {
-//     return true;
-//   }
-//   let index = nums[0];
-//   let move = true;
-//   const last = nums.length - 1
-//   for (let i = 0; i < nums.length - 1; i++) {
-//     currStep = nums[i];
-
-//     while (currStep > 0) {
-//       if (i + currStep + nums[i + currStep] > index) {
-//         index = i + currStep + nums[i + currStep];
-//       }
-//       if (index >= last) {
-//         return true
-//       }
-//       currStep--;
-//     }
-//     if (!move) {
-//       break;
-//     }
-
-//   }
-//   return false;
-// };
 var canJump = function (nums) {
-  //create dp each dp[i] is false;
-  //dp[0] = true
 
   if(nums.length === 1) {
     return true;
   }
-
+  // this will set up how far we can go in the array
   let maxIndex = nums[0];
+  // target
   const last = nums.length - 1
 
   for (i = 0; i < maxIndex; i++) {
-    let currStep = nums[i]
+    let currStep = nums[i];
+    //if we can go reach target then return
     if(maxIndex >= last) {
       return true;
+      //otherwise, we need to see if we can go further by using different steps
     } else if (i + currStep + nums[i + currStep] > maxIndex) {
       maxIndex = i + currStep + nums[i + currStep];
     } else if (i + currStep > maxIndex) {
-      maxIndex = i + currStep
+      maxIndex = i + currStep;
     }
   }
   return false;
