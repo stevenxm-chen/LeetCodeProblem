@@ -2,8 +2,6 @@
 
 // Return true if you can reach the last index, or false otherwise.
 
-
-
 // Example 1:
 
 // Input: nums = [2,3,1,1,4]
@@ -25,6 +23,55 @@
  * @param {number[]} nums
  * @return {boolean}
  */
- var canJump = function(nums) {
-    //
+// var canJump = function (nums) {
+//   //create dp each dp[i] is false;
+//   //dp[0] = true
+
+//   if(nums.length === 1) {
+//     return true;
+//   }
+//   let index = nums[0];
+//   let move = true;
+//   const last = nums.length - 1
+//   for (let i = 0; i < nums.length - 1; i++) {
+//     currStep = nums[i];
+
+//     while (currStep > 0) {
+//       if (i + currStep + nums[i + currStep] > index) {
+//         index = i + currStep + nums[i + currStep];
+//       }
+//       if (index >= last) {
+//         return true
+//       }
+//       currStep--;
+//     }
+//     if (!move) {
+//       break;
+//     }
+
+//   }
+//   return false;
+// };
+var canJump = function (nums) {
+  //create dp each dp[i] is false;
+  //dp[0] = true
+
+  if(nums.length === 1) {
+    return true;
+  }
+
+  let maxIndex = nums[0];
+  const last = nums.length - 1
+
+  for (i = 0; i < maxIndex; i++) {
+    let currStep = nums[i]
+    if(maxIndex >= last) {
+      return true;
+    } else if (i + currStep + nums[i + currStep] > maxIndex) {
+      maxIndex = i + currStep + nums[i + currStep];
+    } else if (i + currStep > maxIndex) {
+      maxIndex = i + currStep
+    }
+  }
+  return false;
 };
