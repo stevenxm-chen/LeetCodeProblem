@@ -35,15 +35,33 @@
      return 0;
    }
 
-   let arr = new Array(nums.length).fill(1);
+   let sub = [nums[0]];
 
-   for (let i = 1; i < nums.length; i++) {
-     for (let j = 0; j < i; j++) {
-       if(nums[j] < nums[i]) {
-         // this is important! this one will store the length of subsequence to the current index
-         arr[i] = Math.max(arr[i], arr[j] + 1);
-       }
+   for (let i = 0; i < nums.length; i++) {
+     const curr = nums[i];
+     if (curr > sub[sub.length - 1]) {
+       sub.push(curr);
+     } else {
+       index = binary (sub, curr);
+       sub[index] = curr;
      }
    }
-   return Math.max(...arr);
+
+   function binary (arr, target) {
+     let start = 0;
+     let end = arr.length - 1;
+
+     while (end > start) {
+       mid = Math.floor((start + end) / 2);
+       if (arr[mid] === target) {
+         return mid;
+       } else if (arr[mid] > target) {
+         end = mid;
+       } else {
+         start = mid + 1;
+       }
+     }
+     return end;
+   }
+    return sub.length;
 };
