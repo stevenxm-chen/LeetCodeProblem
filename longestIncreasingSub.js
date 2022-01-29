@@ -34,19 +34,22 @@
    if (nums.length === 0) {
      return 0;
    }
+  //we are going to build a subsequence along the way using binary search
 
    let sub = [nums[0]];
-
+  // iterate over nums;
    for (let i = 0; i < nums.length; i++) {
      const curr = nums[i];
+     //if curr is larger then every element, then just add it
      if (curr > sub[sub.length - 1]) {
        sub.push(curr);
      } else {
+       //otherwise find the index to replace it
        index = binary (sub, curr);
        sub[index] = curr;
      }
    }
-
+   // binary search function
    function binary (arr, target) {
      let start = 0;
      let end = arr.length - 1;
@@ -56,6 +59,7 @@
        if (arr[mid] === target) {
          return mid;
        } else if (arr[mid] > target) {
+         //this is important, we want to replace the larger number with the smaller one.
          end = mid;
        } else {
          start = mid + 1;
