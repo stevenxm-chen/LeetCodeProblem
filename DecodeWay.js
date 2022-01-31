@@ -47,14 +47,19 @@ var numDecodings = function(s) {
 
   for (let i = 2; i <= s.length; i++) {
 
-    const a = Number(s[i - 1])
-    if (a >= 1 && a <= 9 ) {
+    const curr = Number(s[i - 1]);
+    //if it is not 0, then equal to perviosu one
+    if (curr !== 0 ) {
       dp[i] += dp[i - 1];
     }
+
     const b = Number(s[i - 2] + s[i - 1]);
+    // when curr = 0; then also if it is 10 or 20, equal to dp[i - 2]
+    // else will be dp[ i - 1 ] + dp [ i - 2 ]
     if (b >= 10 && b <= 26) {
       dp[i] += dp[i - 2];
     }
   }
+
   return dp[s.length];
 };
