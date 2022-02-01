@@ -2,8 +2,6 @@
 
 // Return the length of the longest substring containing the same letter you can get after performing the above operations.
 
-
-
 // Example 1:
 
 // Input: s = "ABAB", k = 2
@@ -28,6 +26,30 @@
  * @param {number} k
  * @return {number}
  */
- var characterReplacement = function(s, k) {
-    //
+var characterReplacement = function(s, k) {
+
+  const storage = {};
+  let mostRepeated = 0;
+  let start = 0;
+  let max = 0
+
+  for (let i = 0; i < s.length; i++) {
+    //count chars up to this point
+    storage[s[i]] === undefined ? 1 : storage[s[i]] ++;
+
+   // keep the max value updated
+    mostRepeated = Math.max(mostRepeated, storage[s[i]]);
+
+    // window length is i - start + 1;
+    // window length - mostReptated is the length of char need to be replace
+    // when this number is > k, we need shrink the window size and reset the letter count.
+    if (i - start + 1 - mostRepeated > k) {
+      storage[start] --;
+      start ++
+    }
+
+    max = Math.max(max, i - start + 1);
+  }
+
+  return max;
 };
