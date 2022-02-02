@@ -27,55 +27,22 @@
  * @return {string[][]}
  */
 var groupAnagrams = function (strs) {
-  // iterate over strs, set curr to [curr] and starts to find anagram
-  //if yes, grop them in to curr else leave it for later
 
-  const result = [];
+  // sort each string and store it in object;
 
-  let left = 0;
-  let right = strs.length - 1;
-  const hasGrouped = {};
+  const map = {};
 
-  for (let i = 0; i < strs.length; i++) {
-    const curr = strs[i];
-    if (hasGrouped[curr]) {
-      continue;
+  for (let str of strs) {
+    // sort each string and reconstruct it
+    const key = [...str].sort().join('');
+   //if there is not this string yet just create one array to hold it
+    if (!map[key]) {
+      map[key] = [];
     }
-
-    hasGrouped[curr] = true;
-    const group = [curr]
-    for (let j = i + 1; j < strs.length; j++) {
-      const compare = strs[j]
-
-
-      if (isAnagram (curr, compare)) {
-        group.push(compare);
-        hasGrouped[compare] = true;
-      }
-    }
-
-    result.push(group)
+    // push this string to it
+    map[key].push(str);
   }
-
-  return result;
+  // just need to return all the values into an array;
+  return Objects.values(map)
 };
 
-function isAnagram(str1, str2) {
-  if (str1.length !== str2.length) {
-    return false;
-  }
-
-  const obj = {};
-
-  for (let c of str1) {
-    obj[c] = (obj[c] || 0) + 1;
-  }
-
-  for (let l of str2) {
-    if (!obj[l]) {
-      return false;
-    }
-    obj[l]--;
-  }
-  return true
-}
