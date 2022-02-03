@@ -23,34 +23,5 @@
 
 var longestPalindromeSubseq = function(s) {
 
-  let maxPal = '';
-  let start, end; 
-
-  for (let i = 0; i < s.length; i++) {
-    pal(i, i);
-    pal(i, i + 1);
-  }
-
-  while (start >= 0 && end < s.length) {
-    if (s[start] === maxPal[maxPal.length - 1]) {
-
-    }
-  }
-
-  function pal (left, right) {
-    while (left >= 0 && right < s.length && s[left] === s[right]) {
-      left--;
-      right++;
-    }
-    left ++;
-    right --;
-
-    if (maxPal.length < right - left + 1) {
-      start = left - 1; 
-      end = right + 1; 
-      maxPal = s.slice(left, right + 1);
-    }
-  }
-
-  return maxPal;
+  //
 };

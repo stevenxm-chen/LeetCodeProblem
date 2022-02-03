@@ -39,6 +39,7 @@ var wordBreak = function (s, wordDict) {
 
   for (let i = 1; i <= s.length; i++) {
     for (let j = 0; j < i; j++) {
+      //IMPORTANT, check each combo, dp[j] is starting point if it is true, the previous substring has met the requirement, all we need is the rest.
       w = s.slice(j, i);
       if (dp[j] === true && set.has(w)) {
         dp[i] = true;
