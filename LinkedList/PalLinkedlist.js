@@ -28,6 +28,34 @@
  * @param {ListNode} head
  * @return {boolean}
  */
- var isPalindrome = function(head) {
-    //
+var isPalindrome = function(head) {
+  //iterate over the linkedlist
+  //using a string to capture the list's value
+
+ if(!head) {
+   return null;
+ }
+
+  let list = head;
+  let str = ''
+
+  while (list) {
+    str += list.val;
+    list = list.next;
+  }
+
+  function isPal (str) {
+    let l = 0, r = str.length - 1;
+
+    while (l < r) {
+      if (str[l] !== str[r]) {
+        return false;
+      }
+      l ++;
+      r --;
+    }
+    return true
+  }
+
+  return isPal(str);
 };
