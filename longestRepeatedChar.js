@@ -34,8 +34,9 @@ var characterReplacement = function(s, k) {
   let max = 0
 
   for (let i = 0; i < s.length; i++) {
+
     //count chars up to this point
-    storage[s[i]] === undefined ? 1 : storage[s[i]] ++;
+    storage[s[i]] === undefined ? storage[s[i]] = 1 : storage[s[i]] ++;
 
    // keep the max value updated
     mostRepeated = Math.max(mostRepeated, storage[s[i]]);
@@ -44,12 +45,12 @@ var characterReplacement = function(s, k) {
     // window length - mostReptated is the length of char need to be replace
     // when this number is > k, we need shrink the window size and reset the letter count.
     if (i - start + 1 - mostRepeated > k) {
-      storage[start] --;
+      storage[s[start]] --;
       start ++
     }
-
     max = Math.max(max, i - start + 1);
   }
+
 
   return max;
 };
