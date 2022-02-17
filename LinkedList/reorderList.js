@@ -22,5 +22,33 @@
 
 const reorderList = function (head) {
 
-  //
+  //iterate over to get the length, and copy the first half, and revese the second half
+  // merge two list
+
+  let list = head;
+  const arr = []
+
+  while (list) {
+
+    arr.push(list.val);
+    list = list.next
+  }
+
+  const reorder = [] ;
+
+  while(arr.length) {
+    reorder.push(arr.shift());
+    if(!arr.length) {
+      break;
+    }
+    reorder.push(arr.pop())
+  }
+
+  reorder.shift();
+
+  list = head
+  for (let val of reorder) {
+    list.next = new ListNode(val);
+    list = list.next;
+  }
 }
