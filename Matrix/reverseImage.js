@@ -16,36 +16,54 @@
 // Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
 
 var rotate = function(matrix) {
+  // approach 1, rotate by each number using helper function;
+
+//   function turn (r, c, length) {
+
+//     let temp = matrix[length - c][r]
+//     let count = 4;
+
+//     while (count > 0) {
+//      let save = matrix[r][c];
+//       matrix[r][c] = temp;
+//       temp = save
+
+//       let x = r;
+//       r = c;
+//       c = length - x;
+
+//       count --;
+//     }
+
+//   }
+
+// let len = matrix.length - 1;
+// let j = 0;
+// let i = 0;
+// while (j < len) {
+//   for ( k = j; k < len - j; k++) {
+//     turn(i, k, len )
+//   }
+//   j ++
+//   i ++
+// }
 
 
-  function turn (r, c, length) {
+// approach 2   reverse the symtery and then revedrse the matrix
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = i + 1; j < matrix[0].length; j++) {
+      //swap symetry
+      let temp = matrix[i][j];
 
-    let temp = matrix[length - c][r]
-    let count = 4;
+      matrix[i][j] = matrix[j][i];
 
-    while (count > 0) {
-     let save = matrix[r][c];
-      matrix[r][c] = temp;
-      temp = save
+      matrix[j][i] = temp;
 
-      let x = r;
-      r = c;
-      c = length - x;
-
-      count --;
     }
-
   }
 
-let len = matrix.length - 1;
-let j = 0;
-let i = 0;
-while (j < len) {
-  for ( k = j; k < len - j; k++) {
-    turn(i, k, len )
-  }
-  j ++
-  i ++
-}
+ for (let row of matrix) {
+   row.reverse();
+};
 
 };
