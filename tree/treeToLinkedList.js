@@ -26,10 +26,23 @@
  *     this.right = (right===undefined ? null : right)
  * }
  */
-/**
+/*
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
  var flatten = function(root) {
+  let next = null;
+  function update (tree) {
+    if (!tree) {return tree};
+
+     update (tree.right);
+     update(tree.left);
+
+    tree.right = next;
+    tree.left = null;
+    next = tree
+  }
+
+  update(root)
 
 };
